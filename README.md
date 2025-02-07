@@ -1,6 +1,6 @@
-## LiasCode `neovim` config
+# LiasCode `neovim` config
 
-### Usage
+## Usage
 
 1- Install neovim
 
@@ -13,6 +13,10 @@
 git clone https://github.com/LiasCode/init.lua.git ~/.config/nvim
 # You have to use you user config path
 ```
+
+3- Install ripgrep 
+
+4- Done
 
 Inspired by [ThePrimeagen Repository](https://github.com/ThePrimeagen/init.lua)
 
