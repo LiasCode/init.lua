@@ -88,7 +88,7 @@ return {
     vim.diagnostic.config({
       update_in_insert = true,
       float = {
-        focusable = false,
+        focusable = true,
         style = "minimal",
         border = "rounded",
         source = "always",
@@ -98,6 +98,7 @@ return {
     })
 
     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+    vim.keymap.set('n', '<leader>fo', vim.lsp.buf.format, { desc = 'Format the current buffer' })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('liascode-lsp-attach', { clear = true }),
@@ -124,19 +125,19 @@ return {
         --    See `:help CursorHold` for information about when this is executed
 
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        -- local client = vim.lsp.get_client_by_id(event.data.client_id)
-        --
-        -- if client and client.server_capabilities.documentHighlightProvider then
-        --   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        --     buffer = event.buf,
-        --     callback = vim.lsp.buf.document_highlight,
-        --   })
-        --
-        --   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-        --     buffer = event.buf,
-        --     callback = vim.lsp.buf.clear_references,
-        --   })
-        -- end
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        if client and client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.document_highlight,
+          })
+
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.clear_references,
+          })
+        end
       end,
     })
   end

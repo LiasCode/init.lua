@@ -31,12 +31,12 @@ vim.opt.isfname:append("@-@")
 vim.opt.guicursor = ""
 
 vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 vim.opt.softtabstop = 2
 
 vim.opt.incsearch = true
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 vim.opt.updatetime = 50
 

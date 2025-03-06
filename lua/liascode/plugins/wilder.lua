@@ -9,8 +9,8 @@ return {
       wilder.set_option('pipeline', {
         wilder.debounce(10),
         wilder.branch(
-        wilder.cmdline_pipeline(),
-        wilder.search_pipeline()
+          wilder.cmdline_pipeline(),
+          wilder.search_pipeline()
         ),
       });
 
@@ -23,7 +23,5 @@ return {
         },
       }));
     end
-
   }
 }
-
