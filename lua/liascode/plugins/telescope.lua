@@ -8,7 +8,7 @@ return {
   },
 
   config = function()
-    require('telescope').setup({})
+    require('telescope').setup({ })
 
     local builtin = require('telescope.builtin')
 
