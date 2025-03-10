@@ -5,8 +5,6 @@ return {
 
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-smart-history.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
     "kkharji/sqlite.lua",
   },
 
@@ -18,16 +16,12 @@ return {
       extensions = {
         wrap_results = true,
         fzf = {},
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown {},
-        },
       },
     })
 
     local builtin = require('telescope.builtin')
 
     pcall(require("telescope").load_extension, "fzf")
-    pcall(require("telescope").load_extension, "ui-select")
 
     vim.keymap.set('n', '<C-p>', builtin.git_files, {})
     vim.keymap.set('n', '<C-P>', builtin.find_files, {})
