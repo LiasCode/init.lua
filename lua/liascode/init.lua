@@ -1,4 +1,3 @@
 require("liascode.set");
-require("liascode.remap");
-require("liascode.lazy_init");
-
+require("liascode.maps");
+require("liascode.lazy");
