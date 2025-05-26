@@ -11,7 +11,7 @@ return {
     "hrsh7th/nvim-cmp",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
-    "j-hui/fidget.nvim",
+    -- "j-hui/fidget.nvim",
     "onsails/lspkind.nvim",
     "roobert/tailwindcss-colorizer-cmp.nvim",
   },
@@ -40,7 +40,7 @@ return {
       cmp_lsp.default_capabilities()
     )
 
-    require("fidget").setup({})
+    -- require("fidget").setup({})
 
     require("mason").setup()
 
@@ -192,17 +192,10 @@ return {
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        local telescopeBuiltin = require('telescope.builtin')
-        map('gd', telescopeBuiltin.lsp_definitions, '[G]oto [D]efinition')
-        map('gr', telescopeBuiltin.lsp_references, '[G]oto [R]eferences')
-        map('gI', telescopeBuiltin.lsp_implementations, '[G]oto [I]mplementation')
-        map('<leader>D', telescopeBuiltin.lsp_type_definitions, 'Type [D]efinition')
-        map('<leader>ds', telescopeBuiltin.lsp_document_symbols, '[D]ocument [S]ymbols')
-        map('<leader>ws', telescopeBuiltin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        -- map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
