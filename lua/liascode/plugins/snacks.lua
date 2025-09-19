@@ -26,9 +26,18 @@ return {
   },
   {
     "folke/snacks.nvim",
+    ---@type snacks.Config
     opts = {
-      picker = {},
-      explorer = {},
+      picker = {
+        sources = {
+          explorer = {
+          }
+        }
+      },
+      ---@class snacks.explorer.Config
+      explorer = {
+        replace_netrw = true,
+      },
       terminal = {}
     },
     config = function()
