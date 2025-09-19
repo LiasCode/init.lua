@@ -31,15 +31,32 @@ vim.keymap.set("i", "<C-c>", "<Esc>");
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
   group = highlight_group,
   pattern = '*',
 });
 
 -- vim.keymap.set("n", "<leader>ef", function() vim.cmd 'Ex' end);
-vim.keymap.set("n", "<C-n>", function () vim.cmd 'bnext'  end);
-vim.keymap.set("n", "<leader>rb", function () vim.cmd 'bdelete'  end);
+vim.keymap.set("n", "<C-n>", function() vim.cmd 'bnext' end);
+vim.keymap.set("n", "<leader>rb", function() vim.cmd 'bdelete' end);
 
 -- Exit from terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+--- LSP
+local function show_diagnostics()
+  vim.diagnostic.open_float({
+    scope = "cursor"
+  })
+end
+
+vim.keymap.set('n', '<Leader>e', show_diagnostics, { desc = 'Show diagnostics' })
+
+local function format_buffer()
+  vim.lsp.buf.format({
+    async = true
+  })
+end
+
+vim.keymap.set('n', '<Leader>fo', format_buffer, { desc = 'Format buffer' })

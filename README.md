@@ -6,7 +6,6 @@
 
 [Official neovim installation guide](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 
-
 2- Clone this repo
 
 ```bash
