@@ -1,3 +1,4 @@
+---@type Array<LazyPluginSpec>
 return {
   {
     "folke/trouble.nvim",

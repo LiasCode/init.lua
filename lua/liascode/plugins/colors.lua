@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "Mofiqul/vscode.nvim",
   config = function()

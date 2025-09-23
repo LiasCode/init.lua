@@ -1,3 +1,4 @@
+---@type Array<LazyPluginSpec>
 return {
     {
         "nvim-treesitter/nvim-treesitter",

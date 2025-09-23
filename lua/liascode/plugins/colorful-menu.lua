@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
     "xzbdmw/colorful-menu.nvim",
     config = function()

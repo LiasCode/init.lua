@@ -1,3 +1,4 @@
+---@type Array<LazyPluginSpec>
 return {
   {
     "m4xshen/autoclose.nvim",

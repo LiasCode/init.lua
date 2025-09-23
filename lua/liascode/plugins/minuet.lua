@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
     "milanglacier/minuet-ai.nvim",
     dependencies = {
