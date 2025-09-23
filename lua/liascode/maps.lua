@@ -60,3 +60,10 @@ local function format_buffer()
 end
 
 vim.keymap.set('n', '<Leader>fo', format_buffer, { desc = 'Format buffer' })
+
+
+local function code_actions()
+  vim.lsp.buf.code_action({})
+end
+
+vim.keymap.set('n', '<Leader>ca', code_actions, { desc = 'Code Actions' })
