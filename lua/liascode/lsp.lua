@@ -40,6 +40,7 @@ end
 
 -- 4) Your diagnostics & inlay hints
 vim.lsp.inlay_hint.enable(true)
+
 vim.diagnostic.config({
   virtual_text = true,
   underline = true,
@@ -57,4 +58,8 @@ vim.diagnostic.config({
   },
   update_in_insert = true,
   severity_sort = true,
+  float = {
+    border = "rounded",
+    scope = "line",
+  }
 })
