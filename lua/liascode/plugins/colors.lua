@@ -1,44 +1,41 @@
 return {
-  {
-    'navarasu/onedark.nvim',
-    config = function()
-      require('onedark').setup {
-        style = 'deep',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-        transparent = true,           -- Show/hide background
-        term_colors = true,           -- Change terminal color as per the selected theme style
-        ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
-        cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+  "Mofiqul/vscode.nvim",
+  config = function()
+    local c = require('vscode.colors').get_colors()
 
-        code_style = {
-          comments = 'none',
-          keywords = 'none',
-          functions = 'none',
-          strings = 'none',
-          variables = 'none'
-        },
+    require('vscode').setup({
+      -- Alternatively set style in setup
+      style = 'dark',
 
-        -- Lualine options --
-        lualine = {
-          transparent = true, -- lualine center bar transparency
-        },
+      -- Enable transparent background
+      transparent = false,
 
-        -- Custom Highlights --
-        colors = {},     -- Override default colors
-        highlights = {}, -- Override highlight groups
+      -- Enable italic comment
+      italic_comments = false,
 
-        -- Plugins Config --
-        diagnostics = {
-          darker = false,    -- darker colors for diagnostic
-          undercurl = true,  -- use undercurl instead of underline for diagnostics
-          background = true, -- use background color for virtual text
-        },
+      -- Enable italic inlay type hints
+      italic_inlayhints = true,
+
+      -- Underline `@markup.link.*` variants
+      underline_links = true,
+
+      -- Disable nvim-tree background color
+      disable_nvimtree_bg = true,
+
+      -- Apply theme colors to terminal
+      terminal_colors = true,
+
+      -- Override colors (see ./lua/vscode/colors.lua)
+      color_overrides = {
+        vscLineNumber = '#FFFFFF',
+      },
+
+      -- Override highlight groups (see ./lua/vscode/theme.lua)
+      group_overrides = {
+        Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
       }
+    })
 
-
-      local color = "onedark"
-      vim.cmd.colorscheme(color)
-      -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    end
-  }
+    vim.cmd.colorscheme "vscode"
+  end
 }
