@@ -57,6 +57,7 @@ local function format_buffer()
   vim.lsp.buf.format({
     async = true
   })
+  vim.notify("Formatting current buffer")
 end
 
 vim.keymap.set('n', '<Leader>fo', format_buffer, { desc = 'Format buffer' })
@@ -67,3 +68,21 @@ local function code_actions()
 end
 
 vim.keymap.set('n', '<Leader>ca', code_actions, { desc = 'Code Actions' })
+
+local function lsp_rename()
+  vim.lsp.buf.rename()
+end
+
+vim.keymap.set("n", '<leader>rn', lsp_rename, { desc = "Lsp rename" })
+
+local function toggle_file_explorer()
+  vim.cmd("Neotree toggle")
+end
+
+vim.keymap.set("n", 'B', toggle_file_explorer, { desc = "Toggle neo-tree file explorer" })
+
+local function file_explorer_buffers()
+  vim.cmd("Neotree buffers")
+end
+
+vim.keymap.set("n", '<leader>b', file_explorer_buffers, { desc = "Toggle neo-tree buffers" })

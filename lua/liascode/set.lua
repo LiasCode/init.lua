@@ -1,11 +1,14 @@
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.o.mouse = 'a'
 vim.o.wrap = false
 
 vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 vim.opt.undofile = true
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.ignorecase = true vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 vim.o.timeout = true
@@ -39,8 +42,3 @@ vim.opt.incsearch = true
 vim.o.hlsearch = true
 
 vim.opt.updatetime = 50
-
--- Netrw
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
