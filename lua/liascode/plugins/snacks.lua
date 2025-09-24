@@ -20,10 +20,14 @@ return {
       },
       terminal = {}
     },
-    config = function()
-      -- Map toggle Terminal
-      vim.keymap.set({ "n", "t" }, "<C-t>", Snacks.terminal.toggle);
 
+    lazy = false,
+    priority = 1000,
+
+    config = function()
+      local Snacks = require("snacks");
+
+      -- Map toggle Terminal
       ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
       local progress = vim.defaulttable()
 
