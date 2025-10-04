@@ -37,7 +37,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 });
 
--- vim.keymap.set("n", "<leader>ef", function() vim.cmd 'Ex' end);
 vim.keymap.set("n", "<C-n>", function() vim.cmd 'bnext' end);
 vim.keymap.set("n", "<leader>rb", function() vim.cmd 'bdelete' end);
 
@@ -51,7 +50,7 @@ local function show_diagnostics()
   })
 end
 
-vim.keymap.set('n', '<Leader>e', show_diagnostics, { desc = 'Show diagnostics' })
+vim.keymap.set('n', '<leader>e', show_diagnostics, { desc = 'Show diagnostics' })
 
 local function format_buffer()
   vim.lsp.buf.format({
@@ -60,29 +59,16 @@ local function format_buffer()
   vim.notify("Formatting current buffer")
 end
 
-vim.keymap.set('n', '<Leader>fo', format_buffer, { desc = 'Format buffer' })
-
+vim.keymap.set('n', '<leader>fo', format_buffer, { desc = 'Format buffer' })
 
 local function code_actions()
   vim.lsp.buf.code_action({})
 end
 
-vim.keymap.set('n', '<Leader>ca', code_actions, { desc = 'Code Actions' })
+vim.keymap.set('n', '<leader>ca', code_actions, { desc = 'Code Actions' })
 
 local function lsp_rename()
   vim.lsp.buf.rename()
 end
 
 vim.keymap.set("n", '<leader>rn', lsp_rename, { desc = "Lsp rename" })
-
-local function toggle_file_explorer()
-  vim.cmd("Neotree toggle")
-end
-
-vim.keymap.set("n", 'B', toggle_file_explorer, { desc = "Toggle neo-tree file explorer" })
-
-local function file_explorer_buffers()
-  vim.cmd("Neotree buffers")
-end
-
-vim.keymap.set("n", '<leader>b', file_explorer_buffers, { desc = "Toggle neo-tree buffers" })

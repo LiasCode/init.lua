@@ -1,41 +1,34 @@
 ---@type Array<LazyPluginSpec>
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-  },
-  {
-    "antosha417/nvim-lsp-file-operations",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
-    },
     config = function()
-      require("lsp-file-operations").setup()
-    end,
-  },
-  {
-    "s1n7ax/nvim-window-picker",
-    version = "2.*",
-    config = function()
-      require("window-picker").setup({
-        filter_rules = {
-          include_current_win = false,
-          autoselect_one = true,
-          -- filter using buffer options
-          bo = {
-            -- if the file type is one of following, the window will be ignored
-            filetype = { "neo-tree", "neo-tree-popup", "notify" },
-            -- if the buffer type is one of following, the window will be ignored
-            buftype = { "terminal", "quickfix" },
-          },
+      local nvim_tree = require("nvim-tree")
+
+      nvim_tree.setup({
+        auto_reload_on_write = true,
+        disable_netrw = true,
+        renderer = {
+          hidden_display = "all"
         },
+        diagnostics = {
+          enable = true,
+          show_on_dirs = true
+        },
+        filters = {
+          enable = false
+        }
       })
+
+      local nt_api = require("nvim-tree.api")
+
+      vim.keymap.set({ "n", "i", "v", "t" }, '<C-l>', nt_api.tree.toggle, { desc = "Toggle file explorer" })
+      vim.keymap.set({ "n" }, 'H', nt_api.tree.toggle_hidden_filter, { desc = "Toggle filter files" })
     end,
-  },
+  }
 }

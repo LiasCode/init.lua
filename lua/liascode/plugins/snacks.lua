@@ -27,7 +27,6 @@ return {
     config = function()
       local Snacks = require("snacks");
 
-      -- Map toggle Terminal
       ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
       local progress = vim.defaulttable()
 
@@ -80,19 +79,21 @@ return {
       { "<leader>/",   function() Snacks.picker.grep() end,                 desc = "Grep" },
       { "<leader>:",   function() Snacks.picker.command_history() end,      desc = "Command History" },
       -- { "<leader>ef",  function() Snacks.explorer() end,                    desc = "File Explorer" },
+
       -- find
       { "<leader>fb",  function() Snacks.picker.buffers() end,              desc = "Buffers" },
       { "<leader-ff>", function() Snacks.picker.files() end,                desc = "Find Files" },
       { "<C-p>",       function() Snacks.picker.git_files() end,            desc = "Find Git Files" },
-      -- { "<leader>fp", function() Snacks.picker.projects() end,             desc = "Projects" },
-      -- { "<leader>fr", function() Snacks.picker.recent() end,               desc = "Recent" },
+
       -- git
       { "<leader>gb",  function() Snacks.picker.git_branches() end,         desc = "Git Branches" },
       { "<leader>gl",  function() Snacks.picker.git_log() end,              desc = "Git Log" },
       { "<leader>gs",  function() Snacks.picker.git_status() end,           desc = "Git Status" },
+
       -- Grep
       { "<leader>sb",  function() Snacks.picker.grep_buffers() end,         desc = "Grep Open Buffers" },
       { "<leader>sw",  function() Snacks.picker.grep_word() end,            desc = "Visual selection or word", mode = { "n", "x" } },
+
       -- search
       { "<leader>db",  function() Snacks.picker.diagnostics_buffer() end,   desc = "Diagnostics" },
       { "<leader>dd",  function() Snacks.picker.diagnostics() end,          desc = "Diagnostics" },
