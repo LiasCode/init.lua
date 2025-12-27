@@ -44,14 +44,14 @@ return {
             appearance = {
                 kind_icons = {
                     Copilot = "",
-                }
+                },
             },
             signature = { enabled = true },
             ---@type blink.cmp.CompletionMenuConfigPartial
             completion = {
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 100,
+                    auto_show_delay_ms = 30,
                     window = { border = "rounded" },
                 },
                 ghost_text = {
@@ -68,7 +68,7 @@ return {
                     draw = {
                         padding = { 1, 1 },
                         treesitter = { "lsp" },
-                        columns = { { "kind_icon", gap = 1 }, { gap = 1, "label" }, { "kind", gap = 2 } },
+                        columns = { { "kind_icon" }, { "label", gap = 1 } },
                         components = {
                             kind_icon = {
                                 text = function(ctx)

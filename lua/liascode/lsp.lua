@@ -63,3 +63,42 @@ vim.diagnostic.config({
     scope = "line",
   }
 })
+
+-- LSP mapping keys
+
+local function show_hover()
+  vim.lsp.buf.hover({
+    border = "rounded",
+    relative = "cursor",
+    wrap = false,
+    zindex = 100,
+  })
+end
+
+local function show_diagnostics()
+  vim.diagnostic.open_float({
+    scope = "cursor",
+  })
+end
+
+local function format_buffer()
+  vim.lsp.buf.format({
+    async = true,
+  })
+  vim.notify("Format buffer")
+end
+
+local function code_actions()
+  vim.lsp.buf.code_action({})
+end
+
+local function lsp_rename()
+  vim.lsp.buf.rename()
+end
+
+local mapset = vim.keymap.set
+mapset('n', 'K', show_hover, { desc = 'Lsp hover', noremap = true })
+mapset('n', '<leader>e', show_diagnostics, { desc = 'Show diagnostics' })
+mapset('n', '<leader>fo', format_buffer, { desc = 'Format buffer' })
+mapset('n', '<leader>ca', code_actions, { desc = 'Code Actions' })
+mapset("n", '<leader>rn', lsp_rename, { desc = "Lsp rename" })
