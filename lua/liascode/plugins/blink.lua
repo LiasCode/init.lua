@@ -85,9 +85,7 @@ return {
                                     elseif ctx.source_name == "minuet" then
                                         icon = "💃🏻"
                                     else
-                                        icon = require("lspkind").symbolic(ctx.kind, {
-                                            mode = "symbol",
-                                        })
+                                        -- icon = require("lspkind").get_kind_icon(ctx.kind_icon)
                                     end
                                     return icon .. ctx.icon_gap
                                 end,
