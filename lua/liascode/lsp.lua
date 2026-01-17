@@ -88,6 +88,12 @@ local function format_buffer()
   vim.notify("Format buffer")
 end
 
+local function format_buffer_c()
+  vim.cmd"w!"
+  vim.cmd"!clang-format -i %"
+  vim.notify("Format buffer")
+end
+
 local function code_actions()
   vim.lsp.buf.code_action({})
 end
@@ -100,5 +106,6 @@ local mapset = vim.keymap.set
 mapset('n', 'K', show_hover, { desc = 'Lsp hover', noremap = true })
 mapset('n', '<leader>e', show_diagnostics, { desc = 'Show diagnostics' })
 mapset('n', '<leader>fo', format_buffer, { desc = 'Format buffer' })
+mapset('n', '<leader>ff', format_buffer_c, { desc = 'Format buffer for c files' })
 mapset('n', '<leader>ca', code_actions, { desc = 'Code Actions' })
 mapset("n", '<leader>rn', lsp_rename, { desc = "Lsp rename" })
