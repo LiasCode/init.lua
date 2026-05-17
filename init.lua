@@ -1,1 +1,1 @@
-require("liascode");
+require("liascode")

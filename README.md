@@ -17,5 +17,14 @@ git clone https://github.com/LiasCode/init.lua.git ~/.config/nvim
 
 4- Done
 
-Inspired by [ThePrimeagen Repository](https://github.com/ThePrimeagen/init.lua)
+## Formatting
 
+This repo uses [StyLua](https://github.com/JohnnyMorganz/StyLua) with the config in `stylua.toml`.
+
+Run formatting from the project root with:
+
+```bash
+npx --yes @johnnymorganz/stylua-bin .
+```
+
+Inspired by [ThePrimeagen Repository](https://github.com/ThePrimeagen/init.lua)

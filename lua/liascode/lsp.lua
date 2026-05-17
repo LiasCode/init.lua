@@ -1,7 +1,7 @@
-local lsp_dir = vim.fn.expand('~/.config/nvim/lua/liascode/lsp')
+local lsp_dir = vim.fn.expand("~/.config/nvim/lua/liascode/lsp")
 
 -- 1) Capabilities from blink
-local ok_blink, blink = pcall(require, 'blink.cmp')
+local ok_blink, blink = pcall(require, "blink.cmp")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -11,7 +11,7 @@ end
 
 -- 2) Load & register each server config file
 --    File names become config names: lsp/<name>.lua -> name
----@type table<string, { cfg:vim.lsp.Config }>
+---@type table<string, { cfg: vim.lsp.Config }>
 local registered = {}
 
 for name, t in vim.fs.dir(lsp_dir) do
@@ -47,13 +47,13 @@ vim.diagnostic.config({
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "󰅚",
-      [vim.diagnostic.severity.WARN]  = "󰀪",
-      [vim.diagnostic.severity.INFO]  = "󰋽",
-      [vim.diagnostic.severity.HINT]  = "󰌶",
+      [vim.diagnostic.severity.WARN] = "󰀪",
+      [vim.diagnostic.severity.INFO] = "󰋽",
+      [vim.diagnostic.severity.HINT] = "󰌶",
     },
     numhl = {
       [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-      [vim.diagnostic.severity.WARN]  = "WarningMsg",
+      [vim.diagnostic.severity.WARN] = "WarningMsg",
     },
   },
   update_in_insert = true,
@@ -61,7 +61,7 @@ vim.diagnostic.config({
   float = {
     border = "rounded",
     scope = "line",
-  }
+  },
 })
 
 -- LSP mapping keys
@@ -89,8 +89,8 @@ local function format_buffer()
 end
 
 local function format_buffer_c()
-  vim.cmd"w!"
-  vim.cmd"!clang-format -i %"
+  vim.cmd("w!")
+  vim.cmd("!clang-format -i %")
   vim.notify("Format buffer")
 end
 
@@ -103,9 +103,9 @@ local function lsp_rename()
 end
 
 local mapset = vim.keymap.set
-mapset('n', 'K', show_hover, { desc = 'Lsp hover', noremap = true })
-mapset('n', '<leader>e', show_diagnostics, { desc = 'Show diagnostics' })
-mapset('n', '<leader>fo', format_buffer, { desc = 'Format buffer' })
-mapset('n', '<leader>ff', format_buffer_c, { desc = 'Format buffer for c files' })
-mapset('n', '<leader>ca', code_actions, { desc = 'Code Actions' })
-mapset("n", '<leader>rn', lsp_rename, { desc = "Lsp rename" })
+mapset("n", "K", show_hover, { desc = "Lsp hover", noremap = true })
+mapset("n", "<leader>e", show_diagnostics, { desc = "Show diagnostics" })
+mapset("n", "<leader>fo", format_buffer, { desc = "Format buffer" })
+mapset("n", "<leader>ff", format_buffer_c, { desc = "Format buffer for c files" })
+mapset("n", "<leader>ca", code_actions, { desc = "Code Actions" })
+mapset("n", "<leader>rn", lsp_rename, { desc = "Lsp rename" })

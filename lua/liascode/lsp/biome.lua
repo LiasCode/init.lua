@@ -27,9 +27,18 @@ return {
   end,
 
   filetypes = {
-    "astro", "css", "graphql", "html",
-    "javascript", "javascriptreact", "json", "jsonc",
-    "svelte", "typescript", "typescriptreact", "vue",
+    "astro",
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "svelte",
+    "typescript",
+    "typescriptreact",
+    "vue",
   },
 
   workspace_required = true,
@@ -39,7 +48,9 @@ return {
     -- Normalize arg
     local fname = type(arg1) == "number" and vim.api.nvim_buf_get_name(arg1) or arg1
     if fname == "" then
-      if on_dir then return on_dir(vim.fn.getcwd()) end
+      if on_dir then
+        return on_dir(vim.fn.getcwd())
+      end
       return vim.fn.getcwd()
     end
 
@@ -50,34 +61,52 @@ return {
 
     -- 1) Project root markers (flattened)
     local project_root = up({ "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock", ".git" })
-        or vim.fs.dirname(fname)
+      or vim.fs.dirname(fname)
 
     -- 2) Decide if this buffer actually uses Biome
     local function has_biome_config()
       local cfg = vim.fs.find({ "biome.json", "biome.jsonc" }, {
-        upward = true, path = fname, stop = project_root, type = "file", limit = 1,
+        upward = true,
+        path = fname,
+        stop = project_root,
+        type = "file",
+        limit = 1,
       })[1]
-      if cfg then return true end
+      if cfg then
+        return true
+      end
 
       local pkg = vim.fs.find("package.json", { upward = true, path = fname, stop = project_root })[1]
-      if not pkg then return false end
+      if not pkg then
+        return false
+      end
 
       local ok, json = pcall(vim.json.decode, table.concat(vim.fn.readfile(pkg), "\n"))
-      if not ok or type(json) ~= "table" then return false end
+      if not ok or type(json) ~= "table" then
+        return false
+      end
       local deps = {}
-      for k, v in pairs(json.dependencies or {}) do deps[k] = v end
-      for k, v in pairs(json.devDependencies or {}) do deps[k] = v end
+      for k, v in pairs(json.dependencies or {}) do
+        deps[k] = v
+      end
+      for k, v in pairs(json.devDependencies or {}) do
+        deps[k] = v
+      end
       -- Biome’s package is "@biomejs/biome"
       return deps["@biomejs/biome"] ~= nil
     end
 
     if not has_biome_config() then
       -- Don’t start the client if repo/package doesn’t use Biome
-      if on_dir then return on_dir(nil) end
+      if on_dir then
+        return on_dir(nil)
+      end
       return nil
     end
 
-    if on_dir then return on_dir(project_root) end
+    if on_dir then
+      return on_dir(project_root)
+    end
     return project_root
   end,
 }

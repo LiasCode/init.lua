@@ -2,11 +2,11 @@
 return {
   "Mofiqul/vscode.nvim",
   config = function()
-    local c = require('vscode.colors').get_colors()
+    local c = require("vscode.colors").get_colors()
 
-    require('vscode').setup({
+    require("vscode").setup({
       -- Alternatively set style in setup
-      style = 'dark',
+      style = "dark",
 
       -- Enable transparent background
       transparent = false,
@@ -28,15 +28,15 @@ return {
 
       -- Override colors (see ./lua/vscode/colors.lua)
       color_overrides = {
-        vscLineNumber = '#FFFFFF',
+        vscLineNumber = "#FFFFFF",
       },
 
       -- Override highlight groups (see ./lua/vscode/theme.lua)
       group_overrides = {
         Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
-      }
+      },
     })
 
-    vim.cmd.colorscheme "vscode"
-  end
+    vim.cmd.colorscheme("vscode")
+  end,
 }
