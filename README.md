@@ -1,30 +1,64 @@
-# LiasCode `neovim` config
+# LiasCode Neovim config
 
-## Usage
+Personal Neovim setup in Lua, focused on LSP workflows and editor productivity.
 
-1- Install neovim
+## Requirements
 
-[Official neovim installation guide](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+- Neovim (official install guide: https://github.com/neovim/neovim/blob/master/INSTALL.md)
+- `git`
+- `ripgrep` (used by search pickers)
 
-2- Clone this repo
+## Installation
+
+Clone this repo into your Neovim config path:
 
 ```bash
 git clone https://github.com/LiasCode/init.lua.git ~/.config/nvim
-# You have to use you user config path
 ```
 
-3- Install ripgrep 
+## First run
 
-4- Done
+On the first `nvim` launch:
 
-## Formatting
+- `lazy.nvim` is bootstrapped automatically (`lua/liascode/lazy.lua`)
+- plugins from `lua/liascode/plugins/*.lua` are installed
 
-This repo uses [StyLua](https://github.com/JohnnyMorganz/StyLua) with the config in `stylua.toml`.
+## Quick plugin and utilities summary
 
-Run formatting from the project root with:
+- Plugin manager: `folke/lazy.nvim`
+- Completion stack: `saghen/blink.cmp`, `friendly-snippets`, `blink-ripgrep.nvim`, `blink-copilot`
+- LSP UX and diagnostics: native Neovim LSP + `nvimdev/lspsaga.nvim` + `folke/trouble.nvim`
+- Search and navigation UI: `folke/snacks.nvim` pickers/explorer/terminal
+- Syntax and structure: `nvim-treesitter` + `nvim-treesitter-context`
+- Git tools: `lewis6991/gitsigns.nvim`, `tpope/vim-fugitive`
+- Editing helpers: `autoclose.nvim`, `vim-sleuth`, `vim-vinegar`, `nvim-highlight-colors`
+- Theme and visuals: `Mofiqul/vscode.nvim`, `nvim-web-devicons`, `colorful-menu.nvim`
+- AI assistant integration: `nickjvandyke/opencode.nvim`
+
+## Project structure
+
+- `init.lua`: root entrypoint
+- `lua/liascode/init.lua`: load order (`set` -> `maps` -> `lazy` -> `lsp`)
+- `lua/liascode/plugins/*.lua`: plugin specs
+- `lua/liascode/lsp.lua`: global LSP registration/enable flow
+- `lua/liascode/lsp/*.lua`: per-server config (auto-discovered from filenames)
+
+## Maintenance commands
+
+### Format all Lua files (StyLua)
+
+This repo uses [StyLua](https://github.com/JohnnyMorganz/StyLua) with `stylua.toml` at the repo root.
 
 ```bash
 npx --yes @johnnymorganz/stylua-bin .
 ```
 
-Inspired by [ThePrimeagen Repository](https://github.com/ThePrimeagen/init.lua)
+### Startup/syntax check
+
+```bash
+nvim --headless '+qa'
+```
+
+Run this after broad edits (especially changes in `lua/liascode/lsp.lua`) to catch startup-breaking syntax errors.
+
+Inspired by [ThePrimeagen/init.lua](https://github.com/ThePrimeagen/init.lua).
